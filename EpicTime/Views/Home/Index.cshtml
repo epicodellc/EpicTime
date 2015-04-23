@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "EpicTime";
+}
+
+
+
+<h1>Employee Admin</h1>
+<div ng-controller="employeeCtrl">
+    <div dx-data-grid="{
+        bindingOptions: { dataSource: 'employees' },
+        columns: ['name', 'email'],
+        editing: {
+                    editMode: 'row',
+                    editEnabled: true,
+                    removeEnabled: true,
+                    insertEnabled: true
+                },
+         rowRemoving : deleteEmployee,
+         rowUpdating : updateEmployee,
+         rowInserting : createEmployee,
+         filterRow: {
+            visible: true,
+            showOperationChooser: true
+         },
+         paging: {
+            pageSize: 10,
+            pageIndex: 0
+         }
+    }"></div>
+    <!--SUCCESS TOAST-->
+    <div class="toast" dx-toast="{
+    type: 'success',
+    displayTime: 3000,
+    bindingOptions: { visible : 'showSuccessToast', message : 'toastMessage'}
+  }"></div>
+    <!--ERROR TOAST-->
+    <div class="toast" dx-toast="{
+    type: 'error',
+    displayTime: 3000,
+    bindingOptions: { visible : 'showErrorToast', message : 'toastMessage'}
+  }"></div>
+
+
+
+
+</div>
+
+
+
+
+@*<div id="bodyContainer" ng-app="QuizApp">
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div class="flip-container text-center col-md-12" ng-controller="QuizCtrl" ng-init="nextQuestion()">
+                    <div class="back" ng-class="{flip: answered, correct: correctAnswer, incorrect:!correctAnswer}">
+                        <p class="lead">{{answer()}}</p>
+                        <p>
+                            <button class="btn btn-info btn-lg next option" ng-click="nextQuestion()" ng-disabled="working">Next Question</button>
+                        </p>
+                    </div>
+                    <div class="front" ng-class="{flip: answered}">
+                        <p class="lead">{{title}}</p>
+                        <div class="row text-center">
+                            <button class="btn btn-info btn-lg option" ng-repeat="option in options" ng-click="sendAnswer(option)" ng-disabled="working">{{option.title}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>*@
+

@@ -1,0 +1,26 @@
+﻿
+<div dx-data-grid="{
+        bindingOptions: { dataSource: 'employees' },
+        columns: ['FIRSTNAME', 'LASTNAME', 'EMAIL'],
+        editing: {
+                    editMode: 'row',
+                    editEnabled: true,
+                    removeEnabled: true,
+                    insertEnabled: true
+
+                },
+         rowRemoving : deleteEmployee,
+         rowUpdating : updateEmployee
+    }"></div>
+<!--SUCCESS TOAST-->
+<div class="toast" dx-toast="{
+    type: 'success',
+    displayTime: 3000,
+    bindingOptions: { visible : 'showSuccessToast', message : 'toastMessage'}
+  }"></div>
+<!--ERROR TOAST-->
+<div class="toast" dx-toast="{
+    type: 'error',
+    displayTime: 3000,
+    bindingOptions: { visible : 'showErrorToast', message : 'toastMessage'}
+  }"></div>
