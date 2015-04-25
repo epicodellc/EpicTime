@@ -2,48 +2,7 @@
     ViewBag.Title = "EpicTime";
 }
 
-
-
-<h1>Employee Admin</h1>
-<div ng-controller="employeeCtrl">
-    <div dx-data-grid="{
-        bindingOptions: { dataSource: 'employees' },
-        columns: ['name', 'email'],
-        editing: {
-                    editMode: 'row',
-                    editEnabled: true,
-                    removeEnabled: true,
-                    insertEnabled: true
-                },
-         rowRemoving : deleteEmployee,
-         rowUpdating : updateEmployee,
-         rowInserting : createEmployee,
-         filterRow: {
-            visible: true,
-            showOperationChooser: true
-         },
-         paging: {
-            pageSize: 10,
-            pageIndex: 0
-         }
-    }"></div>
-    <!--SUCCESS TOAST-->
-    <div class="toast" dx-toast="{
-    type: 'success',
-    displayTime: 3000,
-    bindingOptions: { visible : 'showSuccessToast', message : 'toastMessage'}
-  }"></div>
-    <!--ERROR TOAST-->
-    <div class="toast" dx-toast="{
-    type: 'error',
-    displayTime: 3000,
-    bindingOptions: { visible : 'showErrorToast', message : 'toastMessage'}
-  }"></div>
-
-
-
-
-</div>
+<div ng-view></div>
 
 
 

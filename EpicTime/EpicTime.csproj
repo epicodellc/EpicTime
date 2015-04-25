@@ -221,7 +221,9 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\employeeController.js" />
+    <Content Include="Scripts\app\views\clientAdmin.html" />
     <Content Include="Scripts\app\views\employeeAdmin.html" />
+    <Content Include="Scripts\app\views\home.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular-animate.min.js.map" />
