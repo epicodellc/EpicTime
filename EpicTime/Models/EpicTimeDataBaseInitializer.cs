@@ -12,26 +12,27 @@ namespace EpicTime.Models
         {
             base.Seed(context);
 
-            var employees = new List<Employee>();
+            //var employees = new List<Employee>();
 
-            employees.Add(new Employee
-            {
-                Name = "Alex"
-            });
-            employees.Add(new Employee
-            {
-                Name = "Kyle"
-            });
-            employees.Add(new Employee
-            {
-                Name = "Bob"
-            });
-            employees.Add(new Employee
-            {
-                Name = "Hulk Hogan"
-            });
+            //employees.Add(new Employee
+            //{
+            //    FirstName = "Alex"
+            //});
+            //employees.Add(new Employee
+            //{
+            //    FirstName = "Kyle"
+            //});
+            //employees.Add(new Employee
+            //{
+            //    FirstName = "Bob"
+            //});
+            //employees.Add(new Employee
+            //{
+            //    FirstName = "Hulk",
+            //    LastName = "Hogan"
+            //});
 
-            employees.ForEach(a => context.Employees.Add(a));
+            //employees.ForEach(a => context.Employees.Add(a));
 
             context.SaveChanges();
         }

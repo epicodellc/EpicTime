@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - EpicTime</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/Scripts/dx.all.js")
@@ -21,13 +22,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#home">EpicTime</a>
+                <a class="navbar-brand" onclick="goHome()" style="cursor:pointer">EpicTime</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#employeeAdmin">Employee Admin</a></li>
-                    <li><a href="#clientAdmin">Client Admin</a></li>
-                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -40,6 +37,11 @@
         </footer>
     </div>
 
+    <script>
+        function goHome() {
+            window.location.assign("http://" + location.host);
+        }
+    </script>
 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

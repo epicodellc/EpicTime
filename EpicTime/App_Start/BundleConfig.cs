@@ -48,6 +48,8 @@ namespace EpicTime
                       "~/Content/loading-bar.css",
                       "~/Content/Flip.css"));
 
+
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular.min.js",
                         "~/Scripts/angular-sanitize.js",

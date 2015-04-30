@@ -27,10 +27,12 @@ namespace EpicTime.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection")
+            : base("DefaultConnection", throwIfV1Schema: false)
         {
+
         }
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Business> Businesses { get; set; }
     }
 }

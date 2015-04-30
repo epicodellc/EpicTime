@@ -62,7 +62,7 @@ namespace EpicTime.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "User name")]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
 
         [Required]
@@ -75,5 +75,27 @@ namespace EpicTime.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Business Name")]
+        public string BusinessName { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "User Email")]
+        [DataType(DataType.EmailAddress)]
+        public string UserEmail { get; set; }
+
+        [Required]
+        [Display(Name = "Business Email")]
+        [DataType(DataType.EmailAddress)]
+        public string BusinessEmail { get; set; }
     }
 }

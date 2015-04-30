@@ -68,14 +68,36 @@ div.incorrect p {
     color: red;
 }
 
-.btn {
-    border-radius: 0;
-}
-
 .flip-container div.front, .flip-container div.back.flip {
     display: block;
 }
 
-.flip-container div.front.flip, .flip-container div.back {
-    display: none;
+    .flip-container div.front.flip, .flip-container div.back {
+        display: none;
+    }
+
+.dx-datagrid {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+    .dx-datagrid .dx-datagrid-header-panel {
+        padding: 5px;
+    }
+
+    .dx-datagrid .dx-row-inserted {
+        display: none;
+    }
+
+.editButton{
+    margin-right: 5px;
+}
+
+.error{
+    color: #ff3e3e;
+    border-color: #ff3e3e;
+}
+
+.dx-datagrid-pager{
+    padding: 5px;
 }

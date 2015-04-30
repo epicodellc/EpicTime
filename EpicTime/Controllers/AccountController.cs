@@ -94,10 +94,32 @@ namespace EpicTime.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var userModel = new ApplicationUser() { UserName = model.UserName };
+                var result = await UserManager.CreateAsync(userModel, model.Password);
+               
                 if (result.Succeeded)
                 {
+                    var user = await UserManager.FindByNameAsync(model.UserName);
+
+                    //create business
+                    Business business = new Business()
+                    {
+                        Email = model.BusinessEmail,
+                        Name = model.BusinessName
+                    };
+                    int businessID = BusinessDB.Create(business);
+
+                    //create employee
+                    Employee employee = new Employee()
+                    {
+                        ApplicationUserId = user.Id,
+                        BusinessId = businessID,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.UserEmail
+                    };
+                    EmployeeDB.Create(employee);
+
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }

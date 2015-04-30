@@ -6,7 +6,6 @@ var app = angular.module('EpicTime', ['ngRoute', 'dx', 'angular-loading-bar','ng
 app.config(function ($routeProvider) {
 
     $routeProvider.when("/home", {
-        controller: "homeController",
         templateUrl: "scripts/app/views/home.html"
     });
 
@@ -16,7 +15,6 @@ app.config(function ($routeProvider) {
     });
 
     $routeProvider.when("/clientAdmin", {
-        controller: "employeeCtrl",
         templateUrl: "scripts/app/views/clientAdmin.html"
     });
 

@@ -1,26 +1,59 @@
-﻿<h1>Employee Admin</h1>
-<div ng-controller="employeeCtrl">
-    <div dx-data-grid="{
-        bindingOptions: { dataSource: 'employees' },
-        columns: ['name', 'email'],
-        editing: {
-                    editMode: 'row',
-                    editEnabled: true,
-                    removeEnabled: true,
-                    insertEnabled: true
-                },
-         rowRemoving : deleteEmployee,
-         rowUpdating : updateEmployee,
-         rowInserting : createEmployee,
-         filterRow: {
-            visible: true,
-            showOperationChooser: true
+﻿
+
+<style>
+    #totalCount {
+        height: 28px;
+        padding: 1px 6px;
+    }
+
+        #totalCount .badge {
+            color: #428bca;
+            background: white;
+        }
+
+    .yesNoButton{
+        width:100%;
+        margin:0px !important;
+    }
+</style>
+<h1>Employee Administration</h1>
+
+<div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-md-4">
+            <button type="button" class="dx-button" ng-click="getEmployees()">
+                <span class="glyphicon glyphicon-refresh"></span> Refresh
+            </button>
+            <!--<span class="label label-info">Total Count <span class="badge">{{employees.length}}</span></span>-->
+            <button id="totalCount" class="btn btn-primary" type="button">
+                Total Count <span class="badge">{{employees.length}}</span>
+            </button>
+        </div>
+        <div class="col-md-2 col-md-push-6">
+            <button type="button" class="dx-button" ng-click="showEmployeeForm('create', {}, 'Create Employee')">
+                <span class="glyphicon glyphicon-plus"></span>Create Employee
+            </button>
+        </div>
+    </div>
+
+    <div id="grid" dx-data-grid="{
+         bindingOptions: { dataSource: 'employees', columns: 'columns', paging: 'paging' },
+         pager: {
+            showPageSizeSelector: true,
+            allowedPageSizes: [5, 10],
+            showInfo: true,
+            showNavigationButtons: true
          },
-         paging: {
-            pageSize: 10,
-            pageIndex: 0
-         }
+         searchPanel: {
+            visible: true,
+            width: 240,
+            placeholder: 'Search...'
+         },
+         showColumnLines: true,
+         showRowLines: false,
+         rowAlternationEnabled: true
     }"></div>
+
     <!--SUCCESS TOAST-->
     <div class="toast" dx-toast="{
     type: 'success',
@@ -33,5 +66,72 @@
     displayTime: 3000,
     bindingOptions: { visible : 'showErrorToast', message : 'toastMessage'}
   }"></div>
+
+
+    <!--Employee Form Pop Up-->
+    <div id="employeeFormPopUp" dx-popup="{
+        width: 300,
+        height: 'auto',
+        showTitle: true,
+        bindingOptions:{ visible: 'employeeForm.visible' , title: 'employeeForm.popUpTitle'}
+    }">
+        <form id="employeeForm" ng-switch on="employeeForm.submitMethod">
+            <div>
+                <label for="name">First Name</label>
+                <input type="text" name="firstName" ng-model="employeeForm.employee.firstName" class="form-control" placeholder="First Name" required />
+            </div>
+            <div>
+                <label for="name">Last Name</label>
+                <input type="text" name="lastName" ng-model="employeeForm.employee.lastName" class="form-control" placeholder="Last Name" required />
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" ng-model="employeeForm.employee.email" class="form-control" placeholder="Email" required />
+            </div>
+            <div ng-switch-when="create">
+                <label for="userName">User Name</label>
+                <input type="text" name="userName" ng-model="employeeForm.employee.userName" class="form-control" placeholder="User Name" required />
+            </div>
+            <p ng-switch-when="create">
+                The default password will be set to "password". The password can be changed once the user signs in.
+            </p>
+            <br />
+            <div class="row">
+                <div class="col-md-5 col-md-push-1">
+                    <button type="submit" class="dx-button" ng-click="createEmployee()" ng-switch-when="create" style="float:right">Submit</button>
+                    <button type="submit" class="dx-button" ng-click="updateEmployee()" ng-switch-when="edit" style="float:right">Update</button>
+                </div>
+                <div class="col-md-5 col-md-push-1">
+                    <button type="button" class="dx-button" ng-click="employeeForm.visible = false;">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--Delete Pop Up-->
+    <div dx-popup="{
+        width: 400,
+		height: 'auto',
+        showTitle: true,
+        title: 'Delete Employee',
+        bindingOptions:{ visible: 'deletePopUpVisible' }
+    }">
+        <div style="text-align:center">
+            Are you sure you want to delete {{employeeForm.employee.firstName}} {{employeeForm.employee.lastName}}?
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4 col-md-offset-1">
+                <button type="button" class="yesNoButton dx-button dx-button-danger" ng-click="deleteEmployee()">Yes</button>
+            </div>
+            <div class="col-md-4 col-md-push-2">
+                <button type="button" class="yesNoButton dx-button" ng-click="deletePopUpVisible = false;">No</button>
+            </div>
+        </div>
+    </div>
+
+
 </div>
+
+
 
